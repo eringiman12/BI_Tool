@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>{{ message }}</p>
+  <form action="{% url 'form' %}" method="POST">
+    {% csrf_token %}
+    <label for="name">氏名: </label>
+    <input id="name" type="text" name="name"><br/>
+    <label for="address">住所: </label>
+    <input id="address" type="text" name="address"><br/>
+    <label for="cose">コース: </label>
+    <input id="cose" type="text" name="cose"><br/>
+    <input type="submit" value="送信">
+  </form>
+</body>
+</html>

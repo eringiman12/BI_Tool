@@ -1,0 +1,2 @@
+/docker/db/config/*
+/docker/app/main/node_modules

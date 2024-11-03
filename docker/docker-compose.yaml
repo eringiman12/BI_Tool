@@ -1,0 +1,53 @@
+version: '3'
+services:
+
+  db:
+    container_name: este-db
+    image: mysql:8.0
+    volumes:
+      - ./db/config:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: este_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    healthcheck:
+      test: mysqladmin ping
+      interval: 15s
+      retries: 5
+
+  api:
+    container_name: este-api
+    build: 
+      context: ./api
+      dockerfile: Dockerfile
+    volumes:
+      - ./api:/api
+    ports:
+      - "80:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    tty: true
+    stdin_open: true
+    command: sh -c "python3 manage.py runserver 0.0.0.0:80 && tail -f /dev/null"
+
+  app:
+    container_name: este-app
+    build: 
+      context: ./app
+      dockerfile: Dockerfile
+    volumes:
+      - ./app/main:/app/main
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    tty: true
+    stdin_open: true
+    command: sh -c "python3 manage.py runserver 0.0.0.0:8080 && tail -f /dev/null"
+volumes:
+  db-store:
