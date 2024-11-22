@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import  '../assets/css/Main.css';
 
 type ApiResponse = {
   id: number;
@@ -33,7 +34,7 @@ function UserData() {
   }
 
   return (
-    <div>
+    <div className="container">
       {data.map((item) => (
         <div key={item.id}>
           <p>ID: {item.id}</p>
