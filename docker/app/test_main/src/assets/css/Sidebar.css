@@ -1,0 +1,82 @@
+/* サイドバー全体 */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .sidebar.open {
+    width: 200px;
+  }
+  
+  .sidebar.closed {
+    width: 50px;
+  }
+  
+  /* ハンバーガーボタン */
+  .hamburger {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    outline: none;
+    background-color: white;
+  }
+  
+  /* メニュー全体 */
+  .sidebar-content {
+    margin-top: 20px;
+    padding: 10px;
+  }
+  
+  .menu {
+    margin-bottom: 10px;
+    color: white;
+  }
+  
+  .menu-title {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 8px;
+    background-color: #043935;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .menu-title:hover {
+    background-color: #bbb;
+  }
+  
+  .menu-content {
+    padding: 8px;
+    margin-left: 10px;
+    border-left: 2px solid #ccc;
+    margin-top: 10px;
+    border-top: 2px solid #ccc;
+    animation: slide-down 0.3s ease;
+    background-color: #043935;
+  }
+
+  .menu-content p {
+    color: white;
+    padding: 10px;
+    border-bottom:  2px solid #ccc;
+  }
+  
+  /* アコーディオンの開閉アニメーション */
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
