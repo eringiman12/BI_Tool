@@ -1,24 +1,23 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import  '../assets/css/Main.css';
+import '../assets/css/Main.css';
 
 type ApiResponse = {
   id: number;
   name: string;
   address: string;
   date: string;
-  cost: string; // APIレスポンスに応じて変更
+  cost: string;
 };
 
 function UserData() {
-  const [data, setData] = useState<ApiResponse | null>(null);
+  const [data, setData] = useState<ApiResponse[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get<ApiResponse>('http://localhost:80/api/este/');
-        console.log(response)
+        const response = await axios.get<ApiResponse[]>('http://localhost:80/api/este/');
         setData(response.data);
       } catch (err) {
         setError('データの取得に失敗しました');
@@ -35,15 +34,28 @@ function UserData() {
 
   return (
     <div className="container">
-      {data.map((item) => (
-        <div key={item.id}>
-          <p>ID: {item.id}</p>
-          <p>名前: {item.name}</p>
-          <p>住所: {item.address}</p>
-          <p>日付: {item.date}</p>
-          <p>コスト: {item.cost}</p>
-        </div>
-      ))}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>住所</th>
+            <th>日付</th>
+            <th>コスト</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.name}</td>
+              <td>{item.address}</td>
+              <td>{item.date}</td>
+              <td>{item.cost}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

@@ -1,6 +1,47 @@
-.container {
-    width: 90%;
-    height: auto;
+/* サイドバー全体のスタイル */
+.sidebar {
+    position: fixed; /* 固定する */
+    top: 0;
+    left: 0;
+    width: 200px; /* サイドバーの幅 */
+    height: 100%; /* 高さを画面全体に設定 */
+    background-color: #7d2626; /* 背景色 */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* 軽い影を追加 */
+    padding: 0; /* 内側に余白を追加 */
+    overflow-y: auto; /* コンテンツが多い場合はスクロール可能に */
+}
+
+/* サイドバー内のテキストスタイル */
+.sidebar p {
     margin: 0;
-    background-color: black;
+    font-size: 1vw;
+    color: white; /* テキスト色 */
+    text-align: left;
+    padding: 15px;
+}
+
+/* コンテナを中央に配置 */
+.container {
+    margin-left: 220px; /* サイドバーの幅+余白 */
+    padding: 20px; /* コンテナ内の余白 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* 画面全体の高さ */
+    background-color: #fff; /* 背景色（必要に応じて変更） */
+}
+
+/* テーブルのスタイル */
+table {
+    width: 100%; /* テーブルをコンテナ内で全幅に設定 */
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
 }
