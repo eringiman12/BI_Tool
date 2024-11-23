@@ -40,14 +40,14 @@ services:
       context: ./app
       dockerfile: Dockerfile
     volumes:
-      - ./app/main:/app/main
+      - ./app/test_main:/app/main
     ports:
-      - "8080:8080"
+      - "5173:5173"
     depends_on:
       db:
         condition: service_healthy
     tty: true
     stdin_open: true
-    command: sh -c "python3 manage.py runserver 0.0.0.0:8080 && tail -f /dev/null"
+    # command: sh -c "python3 manage.py runserver 0.0.0.0:8080 && tail -f /dev/null"
 volumes:
   db-store:

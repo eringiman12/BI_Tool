@@ -1,2 +1,4 @@
 /docker/db/config/*
-/docker/app/main/node_modules
+/docker/api/*/__pycache__/*
+/docker/*/*/node_modules
+/docker/app/*/dist
