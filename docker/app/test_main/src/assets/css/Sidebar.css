@@ -22,7 +22,6 @@
   .hamburger {
     background-color: transparent;
     border: none;
-    font-size: 20px;
     padding: 10px;
     cursor: pointer;
     outline: none;
@@ -41,6 +40,7 @@
   }
   
   .menu-title {
+    font-size: 1em;
     font-weight: bold;
     cursor: pointer;
     padding: 8px;
@@ -49,20 +49,34 @@
     transition: background-color 0.3s ease;
   }
   
-  .menu-title:hover {
+  .menu-title:hover, .menu-content button:hover, .menu-title button:hover {
     background-color: #bbb;
   }
+
+  .menu-content button, .menu-title button {
+    width: 100%;
+    background-color: #043935;
+    border: none;
+    color: white;
+    text-align: left;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0;
+  }
+
   
   .menu-content {
     padding: 8px;
     margin-left: 10px;
-    border-left: 2px solid #ccc;
     margin-top: 10px;
-    border-top: 2px solid #ccc;
     animation: slide-down 0.3s ease;
     background-color: #043935;
+    margin: 0;
+    color: white;
   }
 
+
+ 
   .menu-content p {
     color: white;
     padding: 10px;

@@ -42,6 +42,7 @@ function UserData() {
             <th>住所</th>
             <th>日付</th>
             <th>コスト</th>
+            <th>実行</th>
           </tr>
         </thead>
         <tbody>
@@ -51,7 +52,11 @@ function UserData() {
               <td>{item.name}</td>
               <td>{item.address}</td>
               <td>{item.date}</td>
-              <td>{item.cost}</td>
+              <td>{item.cose}</td>
+              <td>
+                <button>編集</button>
+                <button>削除</button>
+              </td>
             </tr>
           ))}
         </tbody>
