@@ -3,53 +3,52 @@ import '../assets/css/Regit.css';
 import axios from 'axios';
 
 function Regit() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setname] = useState('');
+  const [address, setaddress] = useState('');
+  const [date, setdate] = useState('');
+  const [cose, setcose] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault(); // デフォルトのフォーム送信動作を無効化
-
     // バリデーション
-    if (!username || !email || !password) {
+    if (!name || !address || !date || !cose) {
       setError('全てのフィールドを入力してください。');
       return;
     }
-    if (!/\S+@\S+\.\S+/.test(email)) {
+    if (!/\S+@\S+\.\S+/.test(address)) {
       setError('正しいメールアドレスを入力してください。');
       return;
     }
-    if (password.length < 6) {
-      setError('パスワードは6文字以上にしてください。');
-      return;
-    }
+    // if (date.length < 6) {
+    //   setError('パスワードは6文字以上にしてください。');
+    //   return;
+    // }
 
     setError(''); // エラーがない場合、エラー状態をクリア
-    if (username != '') {
-      console.log('登録情報:', { username, email, password });
-      const handleSubmit = async (event: React.FormEvent) => {
+    if (name != '') {
+      console.log('登録情報:', { name, address, date, cose});
+      console.log('登録処理をお粉います');
       event.preventDefault();
-        try {
-          const response = await axios.post('http://example.com/api/register', {
-            username,
-            email,
-            password,
-          });
-          console.log('登録成功:', response.data);
-        } catch (error) {
-          console.error('登録失敗:', error);
-          setError('登録に失敗しました。再度お試しください。');
-        }
-      };
+      try {
+        const response = await axios.post('http://localhost:80/api/este-regist/', {
+          name,
+          address,
+          date,
+          cose
+        });
+        console.log('登録成功:', response.data);
+      } catch (error) {
+        console.error('登録失敗:', error);
+        setError('登録に失敗しました。再度お試しください。');
+      }
     }
     // 入力フィールドをリセット
-    setUsername('');
-    setEmail('');
-    setPassword('');
+    setname('');
+    setaddress('');
+    setdate('');
+    setcose('');
   };
-
-
 
   return (
     <div className="register-form">
@@ -57,30 +56,39 @@ function Regit() {
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">ユーザー名:</label>
+          <label htmlFor="name">ユーザー名:</label>
           <input
             type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            id="name"
+            value={name}
+            onChange={(e) => setname(e.target.value)}
           />
         </div>
         <div>
-          <label htmlFor="email">メールアドレス:</label>
+          <label htmlFor="address">メールアドレス:</label>
           <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="address"
+            id="address"
+            value={address}
+            onChange={(e) => setaddress(e.target.value)}
           />
         </div>
         <div>
-          <label htmlFor="password">パスワード:</label>
+          <label htmlFor="text">コース:</label>
           <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            type="text"
+            id="cose"
+            value={cose}
+            onChange={(e) => setcose(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="date">日付:</label>
+          <input
+            type="date"
+            id="date"
+            value={date}
+            onChange={(e) => setdate(e.target.value)}
           />
         </div>
         <button type="submit">登録</button>

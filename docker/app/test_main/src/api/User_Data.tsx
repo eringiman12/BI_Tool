@@ -51,7 +51,7 @@ function UserData() {
               <td>{item.name}</td>
               <td>{item.address}</td>
               <td>{item.date}</td>
-              <td>{item.cost}</td>
+              <td>{item.cose}</td>
             </tr>
           ))}
         </tbody>
