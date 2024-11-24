@@ -41,13 +41,26 @@ table, th, td {
     border: 1px solid black;
     align-items: center;
 }
+
+table td input{
+    width: 90%;
+    height: auto;
+    padding: 5px;
+    margin: 0;
+}
+
 table td button{
-    width: 95%;
+    width: 100px;
     margin:  5px;
     padding: 5px;
+    font-size: 10px;
 }
 
 th, td {
     padding: 8px;
     text-align: left;
+}
+
+form {
+    width: 100%;
 }
