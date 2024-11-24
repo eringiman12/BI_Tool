@@ -111,6 +111,27 @@ function UserData() {
           <tbody>
             {data.map((item) => (
               <tr key={item.id}>
+                <td>
+                  {editId === item.id ? (
+                    <>
+                      <button type="button" onClick={() => handleSubmit(event)}>
+                        保存
+                      </button>
+                      <button type="button" onClick={resetForm}>
+                        キャンセル
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button type="button" onClick={() => handleEdit(item)}>
+                        編集
+                      </button>
+                      <button type="button" onClick={() => handleDelete(item.id)}>
+                        削除
+                      </button>
+                    </>
+                  )}
+                </td>
                 <td>{item.id}</td>
                 <td>
                   <input
@@ -143,27 +164,6 @@ function UserData() {
                     onChange={(e) => setCost(e.target.value)}
                     disabled={editId !== item.id}
                   />
-                </td>
-                <td>
-                  {editId === item.id ? (
-                    <>
-                      <button type="button" onClick={() => handleSubmit(event)}>
-                        保存
-                      </button>
-                      <button type="button" onClick={resetForm}>
-                        キャンセル
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button type="button" onClick={() => handleEdit(item)}>
-                        編集
-                      </button>
-                      <button type="button" onClick={() => handleDelete(item.id)}>
-                        削除
-                      </button>
-                    </>
-                  )}
                 </td>
               </tr>
             ))}
