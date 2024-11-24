@@ -39,6 +39,12 @@ table {
 
 table, th, td {
     border: 1px solid black;
+    align-items: center;
+}
+table td button{
+    width: 95%;
+    margin:  5px;
+    padding: 5px;
 }
 
 th, td {

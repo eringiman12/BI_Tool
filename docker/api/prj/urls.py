@@ -4,7 +4,8 @@ from rest_framework.routers import DefaultRouter
 from main import views
 
 router = DefaultRouter()
-router.register(r'este', views.EsteViewSet)
+router.register(r'este', views.EsteViewSet, basename='este')
+router.register(r'este-regist', views.EsteRegitSet, basename='este-register')
 
 urlpatterns = [
     path('', include('main.urls')),

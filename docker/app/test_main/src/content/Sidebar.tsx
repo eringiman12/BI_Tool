@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../assets/css/Sidebar.css';
 
 function Sidebar() {
@@ -13,6 +14,8 @@ function Sidebar() {
     setActiveMenu(activeMenu === menuIndex ? null : menuIndex);
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
       <button className="hamburger" onClick={toggleSidebar}>
@@ -20,13 +23,18 @@ function Sidebar() {
       </button>
       {isOpen && (
         <div className="sidebar-content">
+        <div className="menu">
+            <div className="menu-title" onClick={() => toggleMenu(1)}>
+                <button onClick={() => navigate('/')}>ホーム</button>
+            </div>
+          </div>
           <div className="menu">
             <div className="menu-title" onClick={() => toggleMenu(1)}>
               データ関連
             </div>
             {activeMenu === 1 && (
               <div className="menu-content">
-                <p>登録</p>
+                <button onClick={() => navigate('/regit/1')}>登録</button>
                 <p>編集</p>
               </div>
             )}
