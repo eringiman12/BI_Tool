@@ -25,6 +25,7 @@ def form(request):
 class EsteViewSet(viewsets.ModelViewSet):
     queryset = Este.objects.all()
     serializer_class = EsteSerializer
+
 class EsteRegitSet(viewsets.ModelViewSet):  # 登録や更新処理を含む
     #  def post(self, request):
     #     serializer = EsteRegitSerializer(data=request.data)
