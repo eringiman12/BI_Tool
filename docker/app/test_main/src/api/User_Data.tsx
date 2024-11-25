@@ -8,7 +8,7 @@ type ApiResponse = {
   name: string;
   address: string;
   date: string;
-  cost: string;
+  cose: string;
 };
 
 function UserData() {
@@ -20,12 +20,12 @@ function UserData() {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [date, setDate] = useState('');
-  const [cost, setCost] = useState('');
+  const [cose, setcose] = useState('');
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     // バリデーションチェック
-    if (!name || !address || !date || !cost) {
+    if (!name || !address || !date || !cose) {
       setError('全てのフィールドを入力してください。');
       return;
     }
@@ -33,11 +33,11 @@ function UserData() {
     try {
       if (editId !== null) {
         // 編集モードの場合
-        await axios.put(`http://localhost:80/api/este/${editId}/`, {
+        await axios.put(`http://localhost:80/api/este-update/${editId}/`, {
           name,
           address,
           date,
-          cost,
+          cose,
         });
         console.log('更新成功');
       } else {
@@ -46,7 +46,7 @@ function UserData() {
           name,
           address,
           date,
-          cost,
+          cose,
         });
         console.log('登録成功');
       }
@@ -65,7 +65,7 @@ function UserData() {
     setName(item.name);
     setAddress(item.address);
     setDate(item.date);
-    setCost(item.cost);
+    setcose(item.cose);
   };
 
   const resetForm = () => {
@@ -73,12 +73,12 @@ function UserData() {
     setName('');
     setAddress('');
     setDate('');
-    setCost('');
+    setcose('');
   };
 
   const fetchData = async () => {
     try {
-      const response = await axios.get<ApiResponse[]>('http://localhost:80/api/este/');
+      const response = await axios.get<ApiResponse[]>('http://localhost:80/api/este-list/');
       setData(response.data);
     } catch (err) {
       setError('データの取得に失敗しました');
@@ -100,12 +100,12 @@ function UserData() {
         <table>
           <thead>
             <tr>
+              <th>操作</th>
               <th>ID</th>
               <th>名前</th>
-              <th>住所</th>
+              <th>メール</th>
               <th>日付</th>
               <th>コスト</th>
-              <th>操作</th>
             </tr>
           </thead>
           <tbody>
@@ -159,9 +159,9 @@ function UserData() {
                 </td>
                 <td>
                   <input
-                    type="number"
-                    value={editId === item.id ? cost : item.cost}
-                    onChange={(e) => setCost(e.target.value)}
+                    type="text"
+                    value={editId === item.id ? cose : item.cose}
+                    onChange={(e) => setcose(e.target.value)}
                     disabled={editId !== item.id}
                   />
                 </td>
