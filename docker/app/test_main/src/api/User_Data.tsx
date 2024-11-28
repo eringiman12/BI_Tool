@@ -70,9 +70,9 @@ function UserData() {
       setError('削除に失敗しました。再度お試しください。');
     }
   };
-  
+
   const handleEdit = (item: ApiResponse) => {
-    setEditId(item.id); // 編集対象のIDを設定
+    setEditId(item.id);
     setName(item.name);
     setAddress(item.address);
     setDate(item.date);
@@ -105,84 +105,92 @@ function UserData() {
     return <div>Error: {error}</div>;
   }
 
-  return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
-        <table>
-          <thead>
-            <tr>
-              <th>操作</th>
-              <th>ID</th>
-              <th>名前</th>
-              <th>メール</th>
-              <th>日付</th>
-              <th>コスト</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((item) => (
-              <tr key={item.id}>
-                <td>
-                  {editId === item.id ? (
-                    <>
-                      <button type="button" onClick={() => handleSubmit(event)}>
-                        保存
-                      </button>
-                      <button type="button" onClick={resetForm}>
-                        キャンセル
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button type="button" onClick={() => handleEdit(item)}>
-                        編集
-                      </button>
-                      <button type="button" onClick={() => handleDelete(item.id)}>
-                        削除
-                      </button>
-                    </>
-                  )}
-                </td>
-                <td>{item.id}</td>
-                <td>
-                  <input
-                    type="text"
-                    value={editId === item.id ? name : item.name} // 編集中ならstateを表示
-                    onChange={(e) => setName(e.target.value)} // 編集中はstateを更新
-                    disabled={editId !== item.id} // 編集中の行だけ操作可能
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={editId === item.id ? address : item.address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    disabled={editId !== item.id}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="date"
-                    value={editId === item.id ? date : item.date}
-                    onChange={(e) => setDate(e.target.value)}
-                    disabled={editId !== item.id}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={editId === item.id ? cose : item.cose}
-                    onChange={(e) => setcose(e.target.value)}
-                    disabled={editId !== item.id}
-                  />
-                </td>
+  console.log(data.length)
+  if (data.length != 0) {
+    return (
+      <div className="container">
+        <form onSubmit={handleSubmit}>
+          <table>
+            <thead>
+              <tr>
+                <th>操作</th>
+                <th>ID</th>
+                <th>名前</th>
+                <th>メール</th>
+                <th>日付</th>
+                <th>コスト</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </form>
-    </div>
-  );
+            </thead>
+            <tbody>
+              {data.map((item) => (
+                <tr key={item.id}>
+                  <td>
+                    {editId === item.id ? (
+                      <>
+                        <button type="button" onClick={() => handleSubmit(event)}>
+                          保存
+                        </button>
+                        <button type="button" onClick={resetForm}>
+                          キャンセル
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button type="button" onClick={() => handleEdit(item)}>
+                          編集
+                        </button>
+                        <button type="button" onClick={() => handleDelete(item.id)}>
+                          削除
+                        </button>
+                      </>
+                    )}
+                  </td>
+                  <td>{item.id}</td>
+                  <td>
+                    <input
+                      type="text"
+                      value={editId === item.id ? name : item.name} // 編集中ならstateを表示
+                      onChange={(e) => setName(e.target.value)} // 編集中はstateを更新
+                      disabled={editId !== item.id} // 編集中の行だけ操作可能
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={editId === item.id ? address : item.address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      disabled={editId !== item.id}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="date"
+                      value={editId === item.id ? date : item.date}
+                      onChange={(e) => setDate(e.target.value)}
+                      disabled={editId !== item.id}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={editId === item.id ? cose : item.cose}
+                      onChange={(e) => setcose(e.target.value)}
+                      disabled={editId !== item.id}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </form>
+      </div>
+    );
+  } else {
+    return (
+      <div className="container">データが登録されてません</div>
+    )
+  }
+  
 }
 
 export default UserData;
