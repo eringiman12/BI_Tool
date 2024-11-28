@@ -6,13 +6,15 @@ function Regit() {
   const [name, setname] = useState('');
   const [address, setaddress] = useState('');
   const [date, setdate] = useState('');
-  const [cose, setcose] = useState('');
+  const [tel, settel] = useState('');
+  const [birthday, setbirthday] = useState('');
+  
   const [error, setError] = useState('');
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault(); // デフォルトのフォーム送信動作を無効化
     // バリデーション
-    if (!name || !address || !date || !cose) {
+    if (!name || !address || !date || !tel) {
       setError('全てのフィールドを入力してください。');
       return;
     }
@@ -27,7 +29,7 @@ function Regit() {
 
     setError(''); // エラーがない場合、エラー状態をクリア
     if (name != '') {
-      console.log('登録情報:', { name, address, date, cose});
+      console.log('登録情報:', { name, address, date, tel, birthday});
       console.log('登録処理をお粉います');
       event.preventDefault();
       try {
@@ -35,7 +37,8 @@ function Regit() {
           name,
           address,
           date,
-          cose
+          tel,
+          birthday
         });
         console.log('登録成功:', response.data);
       } catch (error) {
@@ -47,7 +50,8 @@ function Regit() {
     setname('');
     setaddress('');
     setdate('');
-    setcose('');
+    settel('');
+    setbirthday('');
   };
 
   return (
@@ -74,21 +78,30 @@ function Regit() {
           />
         </div>
         <div>
-          <label htmlFor="text">コース:</label>
+          <label htmlFor="text">電話番号:</label>
           <input
             type="text"
-            id="cose"
-            value={cose}
-            onChange={(e) => setcose(e.target.value)}
+            id="tel"
+            value={tel}
+            onChange={(e) => settel(e.target.value)}
           />
         </div>
         <div>
-          <label htmlFor="date">日付:</label>
+          <label htmlFor="date">初来店日:</label>
           <input
             type="date"
             id="date"
             value={date}
             onChange={(e) => setdate(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="date">誕生日:</label>
+          <input
+            type="date"
+            id="birthday"
+            value={birthday}
+            onChange={(e) => setbirthday(e.target.value)}
           />
         </div>
         <button type="submit">登録</button>

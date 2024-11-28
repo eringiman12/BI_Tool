@@ -1,28 +1,11 @@
 from django.shortcuts import render
 from .models import Este
 from .serializers import EsteSerializer, EsteRegitSerializer
+from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 from rest_framework.views import APIView
 from rest_framework.pagination import LimitOffsetPagination
-
-
-# Create your views here.
-def index(request):
-  content = {
-  'message': 'こんにちは！Djangoテンプレート！'
-  }
-  return render(request, 'main/index.html', content)
-
-
-def form(request):
-  params = {}
-  if(request.method == 'POST'):
-    name = request.POST['name']
-    params = {
-      'name': name,
-    }
-  return render(request, 'main/form.html', params)
 
 class EsteTestViewSet(APIView, LimitOffsetPagination):
   def get(self, request):
@@ -74,3 +57,13 @@ class EsteTestViewSet(APIView, LimitOffsetPagination):
     
     # バリデーションエラーがあれば返す
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+  def delete(self, request, pk):
+        # `pk`で指定されたオブジェクトを取得
+        este = get_object_or_404(Este, pk=pk)
+
+        # 削除処理
+        este.delete()
+
+        # 成功レスポンス
+        return Response({"message": "Deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
