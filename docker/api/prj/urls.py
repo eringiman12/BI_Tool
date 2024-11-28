@@ -12,5 +12,4 @@ urlpatterns = [
     path('api/este-list/', EsteTestViewSet.as_view(), name='este-list'),
     path('api/este-regist/', EsteTestViewSet.as_view(), name='este-register'),
     path('api/este-update/<int:pk>/', EsteTestViewSet.as_view(), name='este-update')
-    # path('este-update/<int:pk>/', views.EsteUpdateView.as_view(), name='este-update'),
 ]
