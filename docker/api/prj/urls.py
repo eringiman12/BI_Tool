@@ -11,5 +11,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/este-list/', EsteTestViewSet.as_view(), name='este-list'),
     path('api/este-regist/', EsteTestViewSet.as_view(), name='este-register'),
-    path('api/este-update/<int:pk>/', EsteTestViewSet.as_view(), name='este-update')
+    path('api/este-update/<int:pk>/', EsteTestViewSet.as_view(), name='este-update'),
+    path('api/este-delete/<int:pk>/', EsteTestViewSet.as_view(), name='este-delete')
 ]

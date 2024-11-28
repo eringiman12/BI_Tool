@@ -59,7 +59,18 @@ function UserData() {
 
     resetForm();
   };
-
+  
+  const handleDelete = async (id: number) => {
+    try {
+      await axios.delete(`http://localhost:80/api/este-delete/${id}/`);
+      console.log(`ID ${id} の削除に成功`);
+      fetchData(); // データを再取得して画面を更新
+    } catch (error) {
+      console.error(`ID ${id} の削除に失敗:`, error);
+      setError('削除に失敗しました。再度お試しください。');
+    }
+  };
+  
   const handleEdit = (item: ApiResponse) => {
     setEditId(item.id); // 編集対象のIDを設定
     setName(item.name);
