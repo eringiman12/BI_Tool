@@ -11,10 +11,11 @@ class Blog(models.Model):
         return self.title
 
 class Este(models.Model):
-    name    = models.CharField(max_length=200)
-    address = models.CharField(max_length=200)
-    date    = models.DateField()
-    cose    = models.CharField(max_length=200)
+    name        = models.CharField(max_length=200)
+    address     = models.CharField(max_length=200)
+    date        = models.DateField()
+    tel         = models.CharField(max_length=200)
+    birthday    = models.DateField(default='2000-01-01')
     
     def __str__(self):
         return self.name

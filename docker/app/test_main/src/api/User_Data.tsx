@@ -8,7 +8,8 @@ type ApiResponse = {
   name: string;
   address: string;
   date: string;
-  cose: string;
+  tel: string;
+  birthday: string;
 };
 
 function UserData() {
@@ -20,12 +21,13 @@ function UserData() {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [date, setDate] = useState('');
-  const [cose, setcose] = useState('');
+  const [tel, setTel] = useState('');
+  const [birthday, setBirthday] = useState('');
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     // バリデーションチェック
-    if (!name || !address || !date || !cose) {
+    if (!name || !address || !date || !tel || !birthday) {
       setError('全てのフィールドを入力してください。');
       return;
     }
@@ -37,7 +39,8 @@ function UserData() {
           name,
           address,
           date,
-          cose,
+          tel,
+          birthday
         });
         console.log('更新成功');
       } else {
@@ -46,7 +49,8 @@ function UserData() {
           name,
           address,
           date,
-          cose,
+          tel,
+          birthday
         });
         console.log('登録成功');
       }
@@ -76,7 +80,8 @@ function UserData() {
     setName(item.name);
     setAddress(item.address);
     setDate(item.date);
-    setcose(item.cose);
+    setTel(item.tel);
+    setBirthday(item.birthday);
   };
 
   const resetForm = () => {
@@ -84,7 +89,8 @@ function UserData() {
     setName('');
     setAddress('');
     setDate('');
-    setcose('');
+    setTel('');
+    setBirthday('');
   };
 
   const fetchData = async () => {
@@ -118,7 +124,8 @@ function UserData() {
                 <th>名前</th>
                 <th>メール</th>
                 <th>日付</th>
-                <th>コスト</th>
+                <th>電話番号</th>
+                <th>誕生日</th>
               </tr>
             </thead>
             <tbody>
@@ -173,8 +180,16 @@ function UserData() {
                   <td>
                     <input
                       type="text"
-                      value={editId === item.id ? cose : item.cose}
-                      onChange={(e) => setcose(e.target.value)}
+                      value={editId === item.id ? tel : item.tel}
+                      onChange={(e) => settel(e.target.value)}
+                      disabled={editId !== item.id}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="date"
+                      value={editId === item.id ? birthday : item.birthday}
+                      onChange={(e) => setBirthday(e.target.value)}
                       disabled={editId !== item.id}
                     />
                   </td>
