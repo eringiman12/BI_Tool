@@ -6,9 +6,23 @@ from rest_framework.response import Response
 from rest_framework import viewsets, status
 from rest_framework.views import APIView
 from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.exceptions import NotFound
 
 class EsteTestViewSet(APIView, LimitOffsetPagination):
-  def get(self, request):
+  def get(self, request, pk=None):
+    # # print(request)
+    if pk is not None:
+      # 特定のIDのデータを取得
+      try:
+        instance = Este.objects.get(id=pk)  # pkを使用
+      except Este.DoesNotExist:
+        raise NotFound(f"ID {pk} のレコードは存在しません。")
+      serializer = EsteSerializer(instance)
+      print(serializer.data)
+      return Response(serializer.data)
+    
+    print("korehatesut")
+      
     # 全データを取得
     queryset = Este.objects.all()
 
