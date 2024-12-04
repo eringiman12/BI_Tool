@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import React from 'react';
 import axios from 'axios';
 import '../assets/css/Main.css';
@@ -152,7 +153,15 @@ function UserData() {
                       </>
                     )}
                   </td>
-                  <td>{item.id}</td>
+                  <td>
+                    {/* <a
+                        href={`/este-userDetails/${item.id}`} // 必須ではないが、SEO対応のために置く
+                        onClick={() => handlegetuser(item.id)}
+                    >
+                      {item.id}
+                    </a> */}
+                    <Link to={`/userDetails/${item.id}`}>{item.id}</Link>
+                  </td>
                   <td>
                     <input
                       type="text"
