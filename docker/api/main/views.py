@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Este
+from .models import Este_User
 from .serializers import EsteSerializer, EsteRegitSerializer
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
@@ -14,17 +14,14 @@ class EsteTestViewSet(APIView, LimitOffsetPagination):
     if pk is not None:
       # 特定のIDのデータを取得
       try:
-        instance = Este.objects.get(id=pk)  # pkを使用
-      except Este.DoesNotExist:
+        instance = Este_User.objects.get(id=pk)  # pkを使用
+      except Este_User.DoesNotExist:
         raise NotFound(f"ID {pk} のレコードは存在しません。")
       serializer = EsteSerializer(instance)
-      print(serializer.data)
       return Response(serializer.data)
-    
-    print("korehatesut")
       
     # 全データを取得
-    queryset = Este.objects.all()
+    queryset = Este_User.objects.all()
 
     # ページネーションを適用
     paginator = LimitOffsetPagination()  # ページネーターインスタンスを作成
@@ -51,8 +48,8 @@ class EsteTestViewSet(APIView, LimitOffsetPagination):
   
   def get_object(self, pk):
     try:
-        return Este.objects.get(pk=pk)
-    except Este.DoesNotExist:
+        return Este_User.objects.get(pk=pk)
+    except Este_User.DoesNotExist:
         return None
     
   def put(self, request, pk):
@@ -74,7 +71,7 @@ class EsteTestViewSet(APIView, LimitOffsetPagination):
 
   def delete(self, request, pk):
         # `pk`で指定されたオブジェクトを取得
-        este = get_object_or_404(Este, pk=pk)
+        este = get_object_or_404(Este_User, pk=pk)
 
         # 削除処理
         este.delete()

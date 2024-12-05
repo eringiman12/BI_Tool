@@ -45,11 +45,11 @@ function UserData() {
             <tr>
               <th>操作</th>
               <th>ID</th>
-              {/* <th>名前</th>
+              <th>名前</th>
               <th>メール</th>
               <th>日付</th>
               <th>電話番号</th>
-              <th>誕生日</th> */}
+              <th>誕生日</th>
             </tr>
           </thead>
           <tbody>
@@ -58,11 +58,20 @@ function UserData() {
                 <button>編集</button>
               </td>
               <td>{data.id}</td>
+              <td>{data.name}</td>
+              <td>{data.address}</td>
+              <td>{data.date}</td>
+              <td>{data.tel}</td>
+              <td>{data.birthday}</td>
+            </tr>
+            <tr>
+              <th>コース履歴</th>
+            </tr>
+            <tr>
+
             </tr>
           </tbody>
-          
         </table>
-        
       </div>
     );
   } else {

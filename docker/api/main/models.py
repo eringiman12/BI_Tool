@@ -10,7 +10,7 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
-class Este(models.Model):
+class Este_User(models.Model):
     name        = models.CharField(max_length=200)
     address     = models.CharField(max_length=200)
     date        = models.DateField()
@@ -19,3 +19,12 @@ class Este(models.Model):
     
     def __str__(self):
         return self.name
+    
+class Este_Course_Contents(models.Model):
+    cose_name   = models.TextField()
+    contents    = models.TextField()
+    price       = models.CharField(max_length=200)
+    date        = models.DateField()
+
+    def __str__(self):
+        return self.este_user_id
