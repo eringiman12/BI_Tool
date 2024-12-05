@@ -68,7 +68,9 @@ function UserData() {
               <th>コース履歴</th>
             </tr>
             <tr>
-
+              <td>
+                
+              </td>
             </tr>
           </tbody>
         </table>

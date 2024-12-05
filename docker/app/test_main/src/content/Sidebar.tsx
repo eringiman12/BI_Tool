@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../assets/css/Sidebar.css';
 
 function Sidebar() {
@@ -34,8 +34,13 @@ function Sidebar() {
             </div>
             {activeMenu === 1 && (
               <div className="menu-content">
-                <button onClick={() => navigate('/regit/1')}>登録</button>
-                <p>編集</p>
+                <div className="content-name">
+                    <Link to={`/regit_user`}>ユーザー登録</Link>
+                </div>
+                <div className="content-name">
+                    <Link to={`/regit_cose`}>コース登録</Link>
+                </div>
+                
               </div>
             )}
           </div>

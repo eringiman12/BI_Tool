@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../assets/css/Regit.css';
 import axios from 'axios';
 
-function Regit() {
+function Regit_Cose() {
   const [name, setname] = useState('');
   const [address, setaddress] = useState('');
   const [date, setdate] = useState('');
@@ -56,11 +56,11 @@ function Regit() {
 
   return (
     <div className="register-form">
-      <h2>登録フォーム</h2>
+      <h2>コース登録フォーム</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">ユーザー名:</label>
+          <label htmlFor="name">コース名:</label>
           <input
             type="text"
             id="name"
@@ -69,7 +69,7 @@ function Regit() {
           />
         </div>
         <div>
-          <label htmlFor="address">メールアドレス:</label>
+          <label htmlFor="address">コース内容:</label>
           <input
             type="address"
             id="address"
@@ -78,7 +78,7 @@ function Regit() {
           />
         </div>
         <div>
-          <label htmlFor="text">電話番号:</label>
+          <label htmlFor="text">価格:</label>
           <input
             type="text"
             id="tel"
@@ -87,21 +87,12 @@ function Regit() {
           />
         </div>
         <div>
-          <label htmlFor="date">初来店日:</label>
+          <label htmlFor="text">施術部位:</label>
           <input
-            type="date"
-            id="date"
-            value={date}
-            onChange={(e) => setdate(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="date">誕生日:</label>
-          <input
-            type="date"
-            id="birthday"
-            value={birthday}
-            onChange={(e) => setbirthday(e.target.value)}
+            type="text"
+            id="tel"
+            value={tel}
+            onChange={(e) => settel(e.target.value)}
           />
         </div>
         <button type="submit">登録</button>
@@ -110,4 +101,4 @@ function Regit() {
   );
 }
 
-export default Regit;
+export default Regit_Cose;
