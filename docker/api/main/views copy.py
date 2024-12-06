@@ -14,14 +14,14 @@ class Este_User_Set(APIView, LimitOffsetPagination):
     if pk is not None:
       # 特定のIDのデータを取得
       try:
-        instance = Este_User.objects.get(id=pk)  # pkを使用
+        instance = Este_User_Serializers.objects.get(id=pk)  # pkを使用
       except Este_User.DoesNotExist:
         raise NotFound(f"ID {pk} のレコードは存在しません。")
       serializer = Este_User_Serializers(instance)
       return Response(serializer.data)
       
     # 全データを取得
-    queryset = Este_User.objects.all()
+    queryset = Este_User_Serializers.objects.all()
 
     # ページネーションを適用
     paginator = LimitOffsetPagination()  # ページネーターインスタンスを作成
@@ -48,8 +48,8 @@ class Este_User_Set(APIView, LimitOffsetPagination):
   
   def get_object(self, pk):
     try:
-        return Este_User.objects.get(pk=pk)
-    except Este_User.DoesNotExist:
+        return Este_User_Serializers.objects.get(pk=pk)
+    except Este_User_Serializers.DoesNotExist:
         return None
     
   def put(self, request, pk):
