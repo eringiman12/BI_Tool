@@ -21,11 +21,11 @@ class Este_User(models.Model):
         return self.name
     
 class Este_Course_Contents(models.Model):
-    cose_name       = models.TextField()
-    contents        = models.TextField()
-    price           = models.CharField(max_length=200)
-    treatment_area  = models.TextField(default='Default Area')
-    date            = models.DateField()
+    cose_name        = models.TextField()
+    contents         = models.TextField()
+    price            = models.CharField(max_length=200)
+    treatment_area   = models.TextField(default='Default Area')
+    created_datetime = models.DateTimeField(auto_now_add=True) 
 
     def __str__(self):
         return self.cose_name

@@ -1,9 +1,14 @@
 from rest_framework import serializers
-from .models import Este_User
+from .models import Este_User, Este_Course_Contents
 
-class EsteSerializer(serializers.ModelSerializer):
+class Este_User(serializers.ModelSerializer):
     class Meta:
         model = Este_User
+        fields = '__all__'
+        
+class Este_Course_Contents(serializers.ModelSerializer):
+    class Meta:
+        model = Este_Course_Contents
         fields = '__all__'
         
 class EsteRegitSerializer(serializers.ModelSerializer):

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Este_User
-from .serializers import EsteSerializer, EsteRegitSerializer
+from .serializers import Este_User, Este_Course_Contents
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import viewsets, status
@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.exceptions import NotFound
 
-class EsteTestViewSet(APIView, LimitOffsetPagination):
+class Este_User_Set(APIView, LimitOffsetPagination):
   def get(self, request, pk=None):
     # # print(request)
     if pk is not None:
@@ -17,7 +17,7 @@ class EsteTestViewSet(APIView, LimitOffsetPagination):
         instance = Este_User.objects.get(id=pk)  # pkを使用
       except Este_User.DoesNotExist:
         raise NotFound(f"ID {pk} のレコードは存在しません。")
-      serializer = EsteSerializer(instance)
+      serializer = Este_User(instance)
       return Response(serializer.data)
       
     # 全データを取得
@@ -28,15 +28,15 @@ class EsteTestViewSet(APIView, LimitOffsetPagination):
     paginated_queryset = paginator.paginate_queryset(queryset, request, view=self)
 
     if paginated_queryset is not None:  # ページネートが成功した場合
-        serializer = EsteSerializer(paginated_queryset, many=True)
+        serializer = Este_User(paginated_queryset, many=True)
 
     # データが存在しない場合のレスポンス
-    serializer = EsteSerializer(queryset, many=True)
+    serializer = Este_User(queryset, many=True)
     return Response(serializer.data)
   
   def post(self, request):
     # データをシリアライズ
-    serializer = EsteSerializer(data=request.data)
+    serializer = Este_User(data=request.data)
     
     # バリデーションを実行し、失敗した場合はエラーをスロー
     if serializer.is_valid(raise_exception=True):
@@ -61,7 +61,7 @@ class EsteTestViewSet(APIView, LimitOffsetPagination):
         return Response({"error": "Not Found"}, status=status.HTTP_404_NOT_FOUND)
 
     # シリアライズとバリデーション
-    serializer = EsteSerializer(este, data=request.data)
+    serializer = Este_User(este, data=request.data)
     if serializer.is_valid():
         serializer.save()  # 更新処理
         return Response(serializer.data)
@@ -78,3 +78,17 @@ class EsteTestViewSet(APIView, LimitOffsetPagination):
 
         # 成功レスポンス
         return Response({"message": "Deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+      
+class Este_Cose_set(APIView, LimitOffsetPagination):
+  def post(self, request):
+    # データをシリアライズ
+    serializer = Este_Course_Contents(data=request.data)
+    print("aaaaaa")
+    
+    # バリデーションを実行し、失敗した場合はエラーをスロー
+    if serializer.is_valid(raise_exception=True):
+        # 保存処理など
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

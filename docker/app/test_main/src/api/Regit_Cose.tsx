@@ -3,42 +3,37 @@ import '../assets/css/Regit.css';
 import axios from 'axios';
 
 function Regit_Cose() {
-  const [name, setname] = useState('');
-  const [address, setaddress] = useState('');
-  const [date, setdate] = useState('');
-  const [tel, settel] = useState('');
-  const [birthday, setbirthday] = useState('');
+  const [cose_name, setcose_name] = useState('');
+  const [contents, setcontents] = useState('');
+  const [price, setprice] = useState('');
+  const [treatment_area, settreatment_area] = useState('');
   
   const [error, setError] = useState('');
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault(); // デフォルトのフォーム送信動作を無効化
     // バリデーション
-    if (!name || !address || !date || !tel) {
+    if (!cose_name || !contents || !price || !treatment_area) {
       setError('全てのフィールドを入力してください。');
       return;
     }
-    if (!/\S+@\S+\.\S+/.test(address)) {
-      setError('正しいメールアドレスを入力してください。');
-      return;
-    }
+
     // if (date.length < 6) {
     //   setError('パスワードは6文字以上にしてください。');
     //   return;
     // }
 
     setError(''); // エラーがない場合、エラー状態をクリア
-    if (name != '') {
-      console.log('登録情報:', { name, address, date, tel, birthday});
-      console.log('登録処理をお粉います');
+    if (cose_name != '') {
+      console.log('登録情報:', { cose_name, contents, price, treatment_area});
       event.preventDefault();
       try {
-        const response = await axios.post('http://localhost:80/api/este-regist/', {
-          name,
-          address,
-          date,
-          tel,
-          birthday
+        const response = await axios.post('http://localhost:80/api/este-regist-cose/', {
+          cose_name,
+          contents,
+          price,
+          treatment_area,
+          date
         });
         console.log('登録成功:', response.data);
       } catch (error) {
@@ -47,11 +42,10 @@ function Regit_Cose() {
       }
     }
     // 入力フィールドをリセット
-    setname('');
-    setaddress('');
-    setdate('');
-    settel('');
-    setbirthday('');
+    setcose_name('');
+    setcontents('');
+    setprice('');
+    settreatment_area('');
   };
 
   return (
@@ -60,39 +54,39 @@ function Regit_Cose() {
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">コース名:</label>
+          <label htmlFor="cose_name">コース名:</label>
           <input
             type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setname(e.target.value)}
+            id="cose_name"
+            value={cose_name}
+            onChange={(e) => setcose_name(e.target.value)}
           />
         </div>
         <div>
-          <label htmlFor="address">コース内容:</label>
+          <label htmlFor="contents">コース内容:</label>
           <input
-            type="address"
-            id="address"
-            value={address}
-            onChange={(e) => setaddress(e.target.value)}
+            type="text"
+            id="contents"
+            value={contents}
+            onChange={(e) => setcontents(e.target.value)}
           />
         </div>
         <div>
           <label htmlFor="text">価格:</label>
           <input
             type="text"
-            id="tel"
-            value={tel}
-            onChange={(e) => settel(e.target.value)}
+            id="price"
+            value={price}
+            onChange={(e) => setprice(e.target.value)}
           />
         </div>
         <div>
           <label htmlFor="text">施術部位:</label>
           <input
             type="text"
-            id="tel"
-            value={tel}
-            onChange={(e) => settel(e.target.value)}
+            id="treatment_area"
+            value={treatment_area}
+            onChange={(e) => settreatment_area(e.target.value)}
           />
         </div>
         <button type="submit">登録</button>
