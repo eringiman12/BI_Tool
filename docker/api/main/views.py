@@ -71,7 +71,7 @@ class Este_User_Set(APIView, LimitOffsetPagination):
 
   def delete(self, request, pk):
         # `pk`で指定されたオブジェクトを取得
-        este = get_object_or_404(Este_User_Serializers, pk=pk)
+        este = get_object_or_404(Este_User, pk=pk)
 
         # 削除処理
         este.delete()
@@ -83,7 +83,6 @@ class Este_Cose_set(APIView, LimitOffsetPagination):
   def post(self, request):
     # データをシリアライズ
     serializer = Este_Course_Contents(data=request.data)
-    print("aaaaaa")
     
     # バリデーションを実行し、失敗した場合はエラーをスロー
     if serializer.is_valid(raise_exception=True):
