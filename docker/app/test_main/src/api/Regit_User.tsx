@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../assets/css/Regit.css';
 import axios from 'axios';
 
-function Regit() {
+function Regit_User() {
   const [name, setname] = useState('');
   const [address, setaddress] = useState('');
   const [date, setdate] = useState('');
@@ -110,4 +110,4 @@ function Regit() {
   );
 }
 
-export default Regit;
+export default Regit_User;

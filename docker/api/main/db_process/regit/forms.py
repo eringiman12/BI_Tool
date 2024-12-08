@@ -1,5 +1,5 @@
 from django import forms
-from ...models import Este
+from ...models import Este_User
 from django.shortcuts import render
 
 def form(request):
@@ -8,7 +8,7 @@ def form(request):
     name = request.POST['name']
     address = request.POST['address']
     cose = request.POST['cose']
-    obj = Este(
+    obj = Este_User(
       name=name,
       address=address,
       cose=cose,
