@@ -24,6 +24,28 @@ function UserData() {
   const [birthday, setBirthday] = useState('');
   const [editId, setEditId] = useState<number | null>(null);
 
+  // 初期行データ
+  const [rows, setRows] = useState([
+    { courseName: '', courseDetails: '', price: '', treatmentArea: '' },
+  ]);
+
+  // 行を追加する関数
+  const addRow = () => {
+    setRows([
+      ...rows,
+      { courseName: '', courseDetails: '', price: '', treatmentArea: '' },
+    ]);
+  };
+
+  // 行データを変更する関数
+  const handleInputChange = (index, field, value) => {
+    const updatedRows = rows.map((row, i) =>
+      i === index ? { ...row, [field]: value } : row
+    );
+    setRows(updatedRows);
+  };
+
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     // バリデーションチェック
@@ -128,9 +150,14 @@ function UserData() {
             </>
           )}
         </div>
-        <div className="content">
+        <div className="content_user_details">
           <table>
             <thead>
+              <tr>
+                <th colspan="7">ユーザー情報</th>
+              </tr>
+            </thead>
+            <tbody>
               <tr>
                 <th>ID</th>
                 <th>名前</th>
@@ -139,8 +166,6 @@ function UserData() {
                 <th>電話番号</th>
                 <th>誕生日</th>
               </tr>
-            </thead>
-            <tbody>
               <tr>
                 <td>{data.id}</td>
                 <td>
@@ -184,25 +209,74 @@ function UserData() {
                   />
                 </td>
               </tr>
-              <tr>
-                <th colspan="7">コース履歴</th>
-              </tr>
-              <tr>
-                <th>コース名</th>
-                <th colspan="3">コース内容</th>
-                <th>価格</th>
-                <th>施術部位</th>
-              </tr>
-              <tr>
-                <td></td>
-                <td colspan="3"></td>
-                <td></td>
-                <td></td>
-              </tr>
             </tbody>
           </table>
         </div>
-        
+        <div className="content_user_details">
+          <table>
+            <thead>
+              <tr>
+                <th colSpan="7">コース履歴</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>コース名</th>
+                <th colSpan="3">コース内容</th>
+                <th>価格</th>
+                <th>施術部位</th>
+                <th>操作</th>
+              </tr>
+              {rows.map((row, index) => (
+                <tr key={index}>
+                  <td>
+                    <input
+                      type="text"
+                      value={row.courseName}
+                      onChange={(e) =>
+                        handleInputChange(index, 'courseName', e.target.value)
+                      }
+                    />
+                  </td>
+                  <td colSpan="3">
+                    <input
+                      type="text"
+                      value={row.courseDetails}
+                      onChange={(e) =>
+                        handleInputChange(index, 'courseDetails', e.target.value)
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={row.price}
+                      onChange={(e) =>
+                        handleInputChange(index, 'price', e.target.value)
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={row.treatmentArea}
+                      onChange={(e) =>
+                        handleInputChange(index, 'treatmentArea', e.target.value)
+                      }
+                    />
+                  </td>
+                  <td>
+                    {/* 行を削除するボタン */}
+                    <button onClick={() => setRows(rows.filter((_, i) => i !== index))}>
+                      削除
+                    </button>
+                  </td>
+                </tr>
+              ))} 
+              </tbody>
+          </table>
+          <button onClick={addRow}>＋行を追加</button>
+        </div>
       </div>
     );
   } else {
@@ -210,7 +284,6 @@ function UserData() {
       <div className="container">データが登録されてません</div>
     )
   }
-  
 }
 
 export default UserData;
