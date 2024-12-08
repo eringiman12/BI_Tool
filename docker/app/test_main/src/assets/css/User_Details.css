@@ -3,7 +3,7 @@
   }
   
 .process,
-.content {
+.content_user_details {
     display: block; /* 子要素を縦並びに */
     margin-bottom: 20px; /* 各セクション間に余白を追加 */
 }
