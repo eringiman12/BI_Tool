@@ -33,7 +33,6 @@ function Regit_Cose() {
           contents,
           price,
           treatment_area,
-          date
         });
         console.log('登録成功:', response.data);
       } catch (error) {

@@ -18,8 +18,7 @@ class Este_User(models.Model):
     birthday    = models.DateField(default='2000-01-01')
     
     def __str__(self):
-        return self.name
-    
+        return self.name   
 class Este_Course_Contents(models.Model):
     cose_name        = models.TextField()
     contents         = models.TextField()
@@ -29,3 +28,9 @@ class Este_Course_Contents(models.Model):
 
     def __str__(self):
         return self.cose_name
+class Este_Course_Contents_User(models.Model):
+    user_id          = models.IntegerField()
+    cose_id          = models.IntegerField()
+    
+    def __str__(self):
+        return self.cose_id
