@@ -1,0 +1,15 @@
+.container {
+    display: block; /* コンテナ全体をブロック要素に */
+  }
+  
+.process,
+.content {
+    display: block; /* 子要素を縦並びに */
+    margin-bottom: 20px; /* 各セクション間に余白を追加 */
+}
+
+table th {
+    text-align:center;
+    background-color: rgb(7, 59, 42);
+    color: white;
+}

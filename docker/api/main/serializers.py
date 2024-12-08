@@ -1,12 +1,17 @@
 from rest_framework import serializers
-from .models import Este
+from .models import Este_User, Este_Course_Contents
 
-class EsteSerializer(serializers.ModelSerializer):
+class Este_User_Serializers(serializers.ModelSerializer):
     class Meta:
-        model = Este
+        model = Este_User
         fields = '__all__'
         
-class EsteRegitSerializer(serializers.ModelSerializer):
+class Este_Course_Contents(serializers.ModelSerializer):
     class Meta:
-        model = Este
-        fields = ['name', 'address', 'date', 'cose']
+        model = Este_Course_Contents
+        fields = '__all__'
+        
+# class EsteRegitSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Este_User
+#         fields = ['name', 'address', 'date', 'cose']
